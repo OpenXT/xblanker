@@ -1,0 +1,87 @@
+dnl
+dnl
+dnl configure.in.head:
+dnl
+dnl Copyright (c) 2009 James McKenzie <20@madingley.org>,
+dnl All rights reserved.
+dnl
+dnl $Id: configure.in,v 1.1 2009/07/31 11:58:28 jamesmck Exp $
+dnl
+dnl $Log: configure.in,v $
+dnl Revision 1.1  2009/07/31 11:58:28  jamesmck
+dnl *** empty log message ***
+dnl
+dnl
+dnl
+dnl
+
+dnl
+dnl Copyright (c) 2009 Citrix Systems, Inc.
+dnl 
+dnl This program is free software; you can redistribute it and/or modify
+dnl it under the terms of the GNU General Public License as published by
+dnl the Free Software Foundation; either version 2 of the License, or
+dnl (at your option) any later version.
+dnl 
+dnl This program is distributed in the hope that it will be useful,
+dnl but WITHOUT ANY WARRANTY; without even the implied warranty of
+dnl MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+dnl GNU General Public License for more details.
+dnl 
+dnl You should have received a copy of the GNU General Public License
+dnl along with this program; if not, write to the Free Software
+dnl Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+dnl
+
+AC_PREREQ(2.13)
+AC_INIT(src/xblanker.c)
+
+AC_PROG_CC
+AC_PROG_CPP
+AC_PROG_INSTALL
+AC_PROG_LN_S
+AC_PROG_MAKE_SET
+AC_PROG_RANLIB
+AC_PROG_AWK
+AC_CHECK_PROG(MD5SUM,md5sum,md5sum)
+AC_CHECK_PROG(GREP,grep,grep)
+
+AC_SYS_LARGEFILE
+
+XBLANKER_MAJOR_VERSION=`cat $srcdir/version-major`
+XBLANKER_MINOR_VERSION=`cat $srcdir/version-minor`
+XBLANKER_MICRO_VERSION=`cat $srcdir/version-micro`
+
+
+XBLANKER_VERSION=$XBLANKER_MAJOR_VERSION.$XBLANKER_MINOR_VERSION.$XBLANKER_MICRO_VERSION
+
+AC_SUBST(XBLANKER_MAJOR_VERSION)
+AC_SUBST(XBLANKER_MINOR_VERSION)
+AC_SUBST(XBLANKER_MICRO_VERSION)
+AC_SUBST(XBLANKER_VERSION)
+
+
+VERSION=$XBLANKER_VERSION
+PACKAGE=xblanker
+
+AM_INIT_AUTOMAKE($PACKAGE,$VERSION)
+
+PKG_CHECK_MODULES(X, x11)
+AC_SUBST(X_CFLAGS)
+AC_SUBST(X_LIBS)
+
+AM_CONFIG_HEADER(src/config.h)
+
+# Checks for header files.
+AC_CHECK_HEADERS([malloc.h])
+AC_HEADER_STDC
+AC_FUNC_MALLOC
+
+AC_C_INLINE
+AC_C_CONST
+
+
+AC_OUTPUT([Makefile
+	   src/Makefile])
+
+
