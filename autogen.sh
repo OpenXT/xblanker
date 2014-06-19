@@ -2,8 +2,6 @@
 #
 # bstrap:
 #
-# Copyright (c) 2009 James McKenzie <20@madingley.org>,
-# All rights reserved.
 #
 # $Id: autogen.sh,v 1.1 2009/07/31 11:58:28 jamesmck Exp $
 #
